@@ -1,0 +1,2058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>May Salama - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* HERO SECTION CSS */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            position: relative;
+            color: #333;
+            background: linear-gradient(180deg, #f7dbb3 0%, #f0c18a 100%);
+            overflow: hidden;
+        }
+
+        /* Cloud Background System */
+        .clouds-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .cloud {
+            position: absolute;
+            background-image: url('cloud.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.7;
+            animation: floatCloudUp 60s linear infinite;
+        }
+
+        /* Different cloud sizes and starting positions */
+        .cloud-1 {
+            width: 200px;
+            height: 120px;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .cloud-2 {
+            width: 150px;
+            height: 90px;
+            right: 10%;
+            animation-delay: -5s;
+        }
+
+        .cloud-3 {
+            width: 300px;
+            height: 180px;
+            left: -5%;
+            animation-delay: -10s;
+            opacity: 0.5;
+        }
+
+        .cloud-4 {
+            width: 180px;
+            height: 108px;
+            right: 15%;
+            animation-delay: -15s;
+        }
+
+        .cloud-5 {
+            width: 120px;
+            height: 72px;
+            left: 25%;
+            animation-delay: -20s;
+        }
+
+        .cloud-6 {
+            width: 250px;
+            height: 150px;
+            right: 25%;
+            animation-delay: -25s;
+            opacity: 0.6;
+        }
+
+        .cloud-7 {
+            width: 100px;
+            height: 60px;
+            left: 15%;
+            animation-delay: -30s;
+        }
+
+        .cloud-8 {
+            width: 220px;
+            height: 132px;
+            right: 5%;
+            animation-delay: -35s;
+        }
+
+        .cloud-9 {
+            width: 160px;
+            height: 96px;
+            left: 45%;
+            animation-delay: -40s;
+        }
+
+        .cloud-10 {
+            width: 280px;
+            height: 168px;
+            right: 30%;
+            animation-delay: -45s;
+            opacity: 0.4;
+        }
+
+        @keyframes floatCloudUp {
+            0% { 
+                transform: translateY(120vh) translateX(0px);
+                opacity: 0;
+            }
+            5% {
+                opacity: 0.4;
+            }
+            10%, 90% { 
+                opacity: 0.7;
+            }
+            95% {
+                opacity: 0.4;
+            }
+            100% { 
+                transform: translateY(-20vh) translateX(0px);
+                opacity: 0;
+            }
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 50%;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+            padding-left: 80px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            color: #2c3e50;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .hero-yuyu-container {
+            flex: 1;
+            max-width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding-right: 80px;
+            z-index: 2;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            color: #333;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(184, 127, 57, 0.2);
+            border-color: #B87F39;
+        }
+
+        .yuyu {
+            position: relative;
+            z-index: 10;
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .yuyu img {
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .yuyu-hero {
+            animation: floatSideToSide 3s ease-in-out infinite;
+        }
+
+        .yuyu-hero img {
+            width: 300px;
+            height: 300px;
+            filter: none;
+        }
+
+        .speech-bubble {
+            position: absolute;
+            background: white;
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.3s ease;
+            min-width: 200px;
+            white-space: nowrap;
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            border: 10px solid transparent;
+            border-top-color: white;
+        }
+
+        .yuyu:hover .speech-bubble {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .yuyu-hero .speech-bubble {
+            top: -60px;
+            left: -100px;
+        }
+
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(45deg, #B87F39, #A3521C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            margin: 50px auto;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .education-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            margin: 50px auto;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .education-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        .education-info {
+            /* No box styling needed */
+        }
+
+        .degree-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .university-name {
+            font-size: 1.3rem;
+            color: #B87F39;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .education-details {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .graduation-info {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .gpa-focus {
+            background: linear-gradient(45deg, #B87F39, #A3521C);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .coursework-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .coursework-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .coursework-title {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .coursework-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .course-tag {
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            color: #333;
+            padding: 12px 18px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .course-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(184, 127, 57, 0.2);
+            border-color: #B87F39;
+        }
+
+        .graduation-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .grad-photo {
+            width: 220px;
+            height: 280px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            object-fit: cover;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .experience-item {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #B87F39;
+            margin-bottom: 5px;
+        }
+
+        .company {
+            font-size: 1.1rem;
+            color: #A3521C;
+            font-weight: bold;
+        }
+
+        .duration {
+            color: #666;
+            font-style: italic;
+            text-align: right;
+        }
+
+        .bullet-points {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .bullet-points li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .bullet-points li::before {
+            content: '●';
+            color: #B87F39;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin: 50px 0;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: scale(1.02);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(45deg, #B87F39, #A3521C);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .project-image:hover {
+            transform: scale(1.05);
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-image embed {
+            width: 100%;
+            height: 100%;
+            border: none;
+            pointer-events: none;
+        }
+
+        .project-pdf-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            cursor: pointer;
+        }
+
+        .project-pdf-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            height: 90%;
+            max-width: 1000px;
+            max-height: 800px;
+        }
+
+        .project-pdf-content embed {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .project-pdf-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .project-pdf-close:hover {
+            color: #B87F39;
+        }
+
+        .project-content {
+            padding: 30px;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .project-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-tag {
+            background: linear-gradient(45deg, #B87F39, #A3521C);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .leadership-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .leadership-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 50px 0;
+        }
+
+        .cert-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cert-card:hover {
+            transform: scale(1.05);
+        }
+
+        .cert-image {
+            width: 100%;
+            height: 180px;
+            background: #f8f9fa;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .cert-image:hover {
+            border-color: #B87F39;
+            background: #fef9f9;
+        }
+
+        .cert-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+            display: block;
+        }
+
+        .cert-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            cursor: pointer;
+        }
+
+        .cert-modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .cert-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .cert-close:hover {
+            color: #B87F39;
+        }
+
+        .about-section .speech-bubble {
+            position: absolute !important;
+            z-index: 10 !important;
+            background: white;
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.3s ease;
+            min-width: 200px;
+            white-space: nowrap;
+        }
+
+        .about-section .yuyu:hover .speech-bubble {
+            opacity: 1 !important;
+            transform: scale(1) !important;
+            z-index: 10 !important;
+        }
+
+        /* Graphic Design Business Section Styles */
+        .business-intro {
+            margin-bottom: 40px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #B87F39, #A3521C);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(184, 127, 57, 0.2);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #B87F39, #A3521C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: grayscale(0);
+        }
+
+        .service-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .business-cta {
+            background: linear-gradient(135deg, rgba(184, 127, 57, 0.1), rgba(163, 82, 28, 0.1));
+            border-radius: 25px;
+            padding: 60px 50px;
+            text-align: center;
+            margin: 60px 0;
+            position: relative;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .business-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 25px;
+            padding: 2px;
+            background: linear-gradient(45deg, #B87F39, #A3521C);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .business-cta-button {
+            background: linear-gradient(45deg, #B87F39, #A3521C);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(184, 127, 57, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .business-cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .business-cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(184, 127, 57, 0.4);
+            background: linear-gradient(45deg, #D69F5A, #CE702A);
+        }
+
+        .business-cta-button:hover::before {
+            left: 100%;
+        }
+
+        .achievements-list {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 50px 0;
+        }
+
+        .achievement-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .achievement-item:last-child {
+            border-bottom: none;
+        }
+
+        .achievement-item::before {
+            content: '';
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #B87F39 0%, #A3521C 100%);
+            color: white;
+            text-align: center;
+            border-radius: 20px;
+            margin: 50px auto;
+            padding: 60px;
+            position: relative;
+        }
+
+        .contact-yuyu {
+            cursor: default;
+        }
+
+        .contact-display-bubble {
+            position: absolute;
+            top: 90px;
+            right: 0;
+            background: white;
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: scale(0.5) translateY(-10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 10;
+            min-width: 200px;
+            white-space: nowrap;
+            text-align: left;
+        }
+
+        .contact-display-bubble.show {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: all;
+        }
+
+        .contact-display-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            border: 10px solid transparent;
+            border-top-color: white;
+        }
+
+        .contact-info {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #B87F39;
+            margin-bottom: 8px;
+            word-break: break-all;
+            user-select: all;
+            cursor: text;
+            white-space: normal;
+        }
+
+        .contact-comment {
+            font-size: 14px;
+            color: #333;
+            font-weight: bold;
+            line-height: 1.4;
+            white-space: normal;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            background: rgba(255,255,255,0.2);
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-link:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-3px);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes floatSideToSide {
+            0%, 100% { transform: translateX(0px) rotate(-2deg); }
+            25% { transform: translateX(10px) rotate(1deg); }
+            50% { transform: translateX(20px) rotate(-1deg); }
+            75% { transform: translateX(10px) rotate(2deg); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .yuyu-floating {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            animation: float 3s ease-in-out infinite;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .yuyu-floating.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-menu {
+            position: fixed;
+            bottom: 120px;
+            right: 30px;
+            background: white;
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: scale(0.5) translateY(20px);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            pointer-events: none;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+
+        .nav-menu.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: all;
+        }
+
+        .nav-menu h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            text-align: center;
+            border-bottom: 2px solid #B87F39;
+            padding-bottom: 8px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 180px;
+        }
+
+        .nav-button {
+            background: linear-gradient(45deg, #B87F39, #A3521C);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+
+        .nav-button:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background: linear-gradient(45deg, #D69F5A, #CE702A);
+        }
+
+        .yuyu-floating.menu-active {
+            animation-play-state: paused;
+        }
+
+        /* Placeholder for missing images */
+        .image-placeholder {
+            background: linear-gradient(45deg, #B87F39, #A3521C);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* UPDATED MOBILE STYLES */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                padding: 40px 20px;
+                gap: 40px;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
+                padding-left: 0;
+            }
+            
+            .hero h1 { 
+                font-size: 2.5rem; 
+            }
+            
+            .hero p { 
+                font-size: 1.2rem; 
+            }
+            
+            .hero-yuyu-container {
+                max-width: 100%;
+                padding-right: 0;
+            }
+            
+            .yuyu-hero img {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .yuyu-hero .speech-bubble {
+                font-size: 12px;
+                padding: 8px 12px;
+                min-width: 150px;
+                top: -50px;
+                left: -75px;
+            }
+            
+            /* Mobile responsive clouds */
+            .cloud {
+                animation-duration: 40s !important;
+            }
+            
+            /* Reduce cloud sizes on mobile */
+            .cloud-1, .cloud-2, .cloud-4, .cloud-5, .cloud-7, .cloud-9 {
+                width: 80px !important;
+                height: 48px !important;
+            }
+            
+            .cloud-3, .cloud-6, .cloud-8, .cloud-10 {
+                width: 120px !important;
+                height: 72px !important;
+            }
+            
+            .section { padding: 40px 15px; }
+            .section h2 { font-size: 2rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .experience-header { flex-direction: column; }
+            .duration { text-align: left; margin-top: 10px; }
+            
+            .about-section > div:first-child {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+                text-align: center;
+            }
+            
+            .about-section .yuyu {
+                left: -20px !important;
+                bottom: 10px !important;
+            }
+            
+            .about-section .yuyu img {
+                width: 80px !important;
+                height: 80px !important;
+            }
+
+            /* Business section mobile styles */
+            .services-grid { 
+                grid-template-columns: 1fr; 
+                gap: 20px;
+            }
+            
+            .service-card { 
+                padding: 30px 20px; 
+            }
+            
+            .business-cta { 
+                padding: 40px 30px; 
+                margin: 40px 0;
+            }
+            
+            .business-cta h3 { 
+                font-size: 1.5rem !important; 
+            }
+            
+            /* Skills section Yuyu mobile styles */
+            .skills-presenter {
+                top: -40px !important;
+                left: 10px !important;
+            }
+            
+            .skills-presenter img {
+                width: 70px !important;
+                height: 70px !important;
+            }
+            
+            .skills-presenter .speech-bubble {
+                font-size: 14px !important;
+                padding: 10px 15px !important;
+                max-width: 160px !important;
+                top: -70px !important;
+                left: 20px !important;
+                white-space: normal !important;
+            }
+
+            /* Achievements mobile layout */
+            #achievements > div:first-child {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+                text-align: center;
+            }
+            
+            #achievements .image-placeholder {
+                width: 250px !important;
+                height: 300px !important;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO SECTION WITH FLOATING CLOUDS -->
+    <section class="hero">
+        <!-- Cloud Background -->
+        <div class="clouds-container">
+            <div class="cloud cloud-1"></div>
+            <div class="cloud cloud-2"></div>
+            <div class="cloud cloud-3"></div>
+            <div class="cloud cloud-4"></div>
+            <div class="cloud cloud-5"></div>
+            <div class="cloud cloud-6"></div>
+            <div class="cloud cloud-7"></div>
+            <div class="cloud cloud-8"></div>
+            <div class="cloud cloud-9"></div>
+            <div class="cloud cloud-10"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1>May Salama</h1>
+            <p>Full-Stack Developer & UX Designer</p>
+            <a href="#about" class="cta-button">Let's Explore Together!</a>
+        </div>
+        
+        <div class="hero-yuyu-container">
+            <div class="yuyu yuyu-hero">
+                <img src="yuyu1.png" alt="Yuyu Character Falling">
+                <div class="speech-bubble">
+                    Relax, the ground isn't in the wireframe yet. Welcome aboard! 👋
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about-section" id="about">
+        <h2>About Me</h2>
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px; align-items: center;">
+            <div>
+                <p style="font-size: 1.2rem; line-height: 1.8; color: #555; margin-bottom: 25px;">
+                    Hi! I'm an Information Sciences & Technology graduate who thrives at the intersection of design and technology. With 6+ years of design experience and hands-on expertise in full-stack development, UX research, and project management, I've led cross-functional teams and delivered 25+ freelance projects with a 100% client satisfaction rate. What excites me most is turning complex problems into human-centered solutions — whether that's redesigning digital experiences for 40,000+ users at Penn State, building a game that caught corporate sponsors' attention, or running a design business that grew year-over-year.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #666;">
+                    I believe the best technology doesn't just work — it feels intuitive, inclusive, and even fun. That's the mindset I bring to every project. 
+                </p>
+            </div>
+            <div style="position: relative; display: flex; justify-content: center; align-items: center; padding-left: 40px; min-height: 350px;">
+                <!-- Main profile image -->
+                <div style="position: relative; z-index: 1;">
+                    <img src="profile.jpg" alt="May Salama Profile" style="width: 300px; height: 300px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); object-fit: cover;">
+                </div>
+                
+                <!-- Yuyu sticker peeking out from the left side -->
+                <div class="yuyu" style="position: absolute; left: -27px; bottom: 50px; z-index: 2;">
+                    <img src="yuyu2.png" alt="Yuyu Character" style="width: 100px; height: 100px;">
+                    <div class="speech-bubble" style="top: -50px; left: 20px;">
+                        She's pretty amazing, right? 😎
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Graphic Design Business Section -->
+    <section class="section" id="design-business">
+        <h2>ZA Graphics - Design Services</h2>
+        <div class="business-intro">
+            <p style="font-size: 1.3rem; line-height: 1.8; color: #555; text-align: center; margin-bottom: 50px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Looking to get work done? I specialize in creating visually stunning designs that bring your ideas to life and help your brand stand out from the competition.
+            </p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">📋</div>
+                <h3>Website Portfolios</h3>
+                <p>Professional website portfolio designs that showcase your work in the best possible light online.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>Social Media Graphics</h3>
+                <p>Engaging posts, stories, and ads optimized for all social media platforms.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">💼</div>
+                <h3>Business Cards</h3>
+                <p>Professional business card designs that make lasting first impressions and represent your brand.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">💌</div>
+                <h3>Digital Invitations</h3>
+                <p>Beautiful custom invitations for parties, birthdays, weddings, and special occasions.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">📄</div>
+                <h3>Flyers & Posters</h3>
+                <p>Eye-catching promotional materials that grab attention and communicate your message effectively.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">📰</div>
+                <h3>Magazine & Newspaper Ads</h3>
+                <p>Professional advertisements designed to stand out in print media and drive engagement.</p>
+            </div>
+        </div>
+        
+        <div class="business-cta">
+            <div class="cta-content">
+                <h3 style="color: #2c3e50; margin-bottom: 20px; font-size: 2rem;">Ready to Bring Your Ideas to Life?</h3>
+                <p style="color: #666; margin-bottom: 30px; font-size: 1.1rem; line-height: 1.6;">
+                    Let's collaborate to create designs that truly represent your vision. From concept to completion, I'm here to make your project shine.
+                </p>
+                <a href="https://forms.gle/1bw4Brgd1DrYSSRGA" target="_blank" class="business-cta-button">
+                    Start Your Project Today
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section class="section" id="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid" style="position: relative;">
+            <!-- Yuyu presenter positioned above first card -->
+            <div class="yuyu skills-presenter" style="position: absolute; top: -80px; left: 20px; z-index: 1;">
+                <img src="yuyu6.png" alt="Yuyu Presenter" style="width: 90px; height: 90px;">
+                <div class="speech-bubble" style="top: -80px; left: 30px; white-space: normal; max-width: 200px; z-index: 10;">
+                    As you can see, she's got superpowers!<br>Full-stack AND design? 🦸‍♀️
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <h3 style="color: #B87F39; margin-bottom: 15px;">Programming & Development</h3>
+                <p style="line-height: 1.6;">Java, Python, HTML/CSS, JavaScript, MySQL, Git/GitHub</p>
+            </div>
+            
+            <div class="skill-card">
+                <h3 style="color: #B87F39; margin-bottom: 15px;">Design & Prototyping</h3>
+                <p style="line-height: 1.6;">Adobe Creative Suite (Illustrator, Photoshop, InDesign), Figma</p>
+            </div>
+            
+            <div class="skill-card">
+                <h3 style="color: #B87F39; margin-bottom: 15px;">Tools & Platforms</h3>
+                <p style="line-height: 1.6;">Microsoft Office Suite, Google Workspace, Windows, iOS</p>
+            </div>
+            
+            <div class="skill-card">
+                <h3 style="color: #B87F39; margin-bottom: 15px;">Specializations</h3>
+                <p style="line-height: 1.6;">Full-stack development, UI/UX design, user research, database design, accessibility compliance (WCAG 2.1)</p>
+            </div>
+
+            <div class="skill-card">
+                <h3 style="color: #B87F39; margin-bottom: 15px;">Languages</h3>
+                <p style="line-height: 1.6;">English, Arabic</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Experience Section -->
+    <section class="section" id="experience">
+        <h2>Professional Experience</h2>
+        
+        <div class="experience-item">
+            <div class="experience-header">
+                <div>
+                    <div class="job-title">Application Developer & Designer Intern</div>
+                    <div class="company">Centre County Film Festival, State College, PA</div>
+                </div>
+                <div class="duration">August 2024 - May 2025</div>
+            </div>
+            <ul class="bullet-points">
+                <li>Led cross-functional collaboration across IT, Design, and Game Development teams for major film festival initiative</li>
+                <li>Conducted comprehensive mobile application development research and created detailed concept designs for ticketing system integration</li>
+                <li>Maintained website functionality and resolved critical technical issues while ensuring 99% uptime during festival season</li>
+                <li>Spearheaded game development project with development partner, delivering innovative product that attracted interest from 3+ corporate sponsors</li>
+                <li>Implemented rapid solutions for complex technical challenges, including modifications to 5,000+ lines of existing codebase</li>
+                <li>Created engaging social media content and marketing materials, increasing festival social engagement by 40%</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <div class="experience-header">
+                <div>
+                    <div class="job-title">Freelance Graphic Designer</div>
+                    <div class="company">ZA Graphics, Philadelphia, PA</div>
+                </div>
+                <div class="duration">January 2019 - Present</div>
+            </div>
+            <ul class="bullet-points">
+                <li>Built and maintained creative design business serving 25+ clients across 6 years with 100% client retention rate</li>
+                <li>Translated complex client requirements into innovative design concepts aligned with brand identity and business objectives</li>
+                <li>Mastered Adobe Creative Suite (Illustrator, Photoshop, InDesign) to deliver high-quality designs from concept to final production</li>
+                <li>Managed concurrent projects with tight deadlines while maintaining consistent quality standards and client satisfaction</li>
+                <li>Expanded service offerings by continuously learning new design trends, tools, and techniques, increasing revenue by 60% year-over-year</li>
+                <li>Developed strong client communication and project management skills through direct client consultation and collaboration</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Key Academic Projects Section -->
+    <section class="section" id="projects">
+        <h2>Key Academic Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image" onclick="window.open('https://www.figma.com/proto/5fHglwVTN52TZDMj856sue/Penn-State-Parking-System-Redesign?t=peqzKsSZiZWDAm6Q-1', '_blank')">
+                    <img src="parking.png" alt="Penn State Parking System Redesign">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Penn State Parking System Redesign</h3>
+                    <p class="project-description">
+                        Led comprehensive redesign replacing ambiguous status indicators with real-time numerical data display. Conducted stakeholder analysis involving Transportation Services, IT, and Marketing departments. Designed WCAG 2.1 compliant interface for 40,000+ campus users with integrated favorites system.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Figma</span>
+                        <span class="tech-tag">UX Research</span>
+                        <span class="tech-tag">WCAG 2.1</span>
+                        <span class="tech-tag">Stakeholder Analysis</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image" onclick="window.open('https://may-salama.github.io/barbershop/', '_blank')">
+                    <img src="barbershop.png" alt="Barbershop Management System">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Barbershop Management System</h3>
+                    <p class="project-description">
+                        Built comprehensive React-based barbershop management system with real-time queue tracking, customer check-in/out, and barber scheduling. Features multi-tab dashboard with live statistics, automated wait time calculations, and responsive glassmorphism UI design. Implemented complete CRUD operations with local data persistence and real-time updates.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">Responsive Design</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image" onclick="window.open('https://may-salama.github.io/kidsairportsimulator/', '_blank')">
+                    <img src="airport.png" alt="Airport Navigation Educational Game">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Airport Navigation Educational Game</h3>
+                    <p class="project-description">
+                        Developed interactive 2D educational game simulating airport travel experience for children using vanilla JavaScript, HTML5, and CSS. Implemented smooth animation systems using requestAnimationFrame() for real-time character movement and jump mechanics.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">Adobe Illustrator</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image" onclick="openProjectModal('mystop.pdf')">
+                    <embed src="mystop.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">myStop Transit App Redesign</h3>
+                    <p class="project-description">
+                        Redesigned State College's public transportation app addressing critical usability issues affecting daily commuters and students. Designed intuitive bottom navigation system with integrated Google Maps, in-app bus pass wallet feature, and personalized route selection.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Mobile UX</span>
+                        <span class="tech-tag">User Research</span>
+                        <span class="tech-tag">Google Maps API</span>
+                        <span class="tech-tag">UI Design</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image" onclick="openProjectModal('bus.jpg')">
+                    <img src="bus.jpg" alt="Helsinki-Inspired Sustainable Bus Shelter Design">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Helsinki-Inspired Sustainable Bus Shelter Design</h3>
+                    <p class="project-description">
+                        Designed eco-friendly bus shelter concept integrating architectural elements from Alvar Aalto's Finlandia Hall and Finnish Museum of Natural History. Featured sustainable materials including white Carrara marble cladding, Finnish birch wood interiors, and native plant green roof system.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Adobe Illustrator</span>
+                        <span class="tech-tag">Environmental Design</span>
+                        <span class="tech-tag">Sustainability</span>
+                        <span class="tech-tag">Architecture</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership & Activities Section -->
+    <section class="section" id="leadership">
+        <h2>Leadership & Activities</h2>
+        <div class="leadership-grid">
+            <div class="leadership-card">
+                <h3 style="color: #B87F39; margin-bottom: 10px;">Founder & President</h3>
+                <h4 style="color: #A3521C; margin-bottom: 10px;">Muslim Students Association, Penn State Berks</h4>
+                <p style="color: #666; font-style: italic; margin-bottom: 15px;">August 2021 - May 2023</p>
+                <ul class="bullet-points">
+                    <li>Founded organization from concept, growing membership to 80+ active participants within first year</li>
+                    <li>Raised and managed annual budget of $6K+ and coordinated fundraising events</li>
+                    <li>Organized cultural and educational programming reaching 300+ students per semester</li>
+                </ul>
+            </div>
+
+            <div class="leadership-card">
+                <h3 style="color: #B87F39; margin-bottom: 10px;">Vice President</h3>
+                <h4 style="color: #A3521C; margin-bottom: 10px;">Egyptian Student Association, Penn State</h4>
+                <p style="color: #666; font-style: italic; margin-bottom: 15px;">August 2024 - May 2025</p>
+                <ul class="bullet-points">
+                    <li>Revitalized dormant organization from zero active membership to 100+ active members</li>
+                    <li>Grew Instagram following by 300+ followers and increased event attendance</li>
+                    <li>Secured $5K+ annual budget for cultural programming and community service</li>
+                </ul>
+            </div>
+
+            <div class="leadership-card">
+                <h3 style="color: #B87F39; margin-bottom: 10px;">Secretary</h3>
+                <h4 style="color: #A3521C; margin-bottom: 10px;">Middle Eastern & North African Caucus, Penn State</h4>
+                <p style="color: #666; font-style: italic; margin-bottom: 15px;">August 2023 - May 2024</p>
+                <ul class="bullet-points">
+                    <li>Secured $4K+ in organizational funding through grant applications</li>
+                    <li>Organized 6+ campus events serving 200+ participants per semester</li>
+                    <li>Supported diversity and inclusion initiatives affecting MENA student population</li>
+                </ul>
+            </div>
+
+            <div class="leadership-card">
+                <h3 style="color: #B87F39; margin-bottom: 10px;">Student Government Representative</h3>
+                <h4 style="color: #A3521C; margin-bottom: 10px;">Penn State Berks</h4>
+                <p style="color: #666; font-style: italic; margin-bottom: 15px;">August 2022 - May 2023</p>
+                <ul class="bullet-points">
+                    <li>Represented student body interests in university policy discussions</li>
+                    <li>Collaborated with administration on campus improvement initiatives affecting 3,000+ students</li>
+                    <li>Participated in budget allocation meetings and policy development committees</li>
+                </ul>
+            </div>
+
+            <div class="leadership-card">
+                <h3 style="color: #B87F39; margin-bottom: 10px;">Representative</h3>
+                <h4 style="color: #A3521C; margin-bottom: 10px;">Penn State IST Undergraduate Student Council</h4>
+                <p style="color: #666; font-style: italic; margin-bottom: 15px;">August 2024 - May 2025</p>
+                <ul class="bullet-points">
+                    <li>Advocated for IST student interests in curriculum development and program improvement discussions</li>
+                    <li>Facilitated communication between students and faculty regarding academic policies and resources</li>
+                    <li>Participated in strategic planning for department events and professional development opportunities</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section education-section" id="education">
+        <h2>Education</h2>
+        
+        <div class="education-content">
+            <div class="education-info">
+                <div class="degree-title">Bachelor of Science in Information Sciences & Technology</div>
+                <div class="university-name">The Pennsylvania State University, University Park, PA</div>
+                
+                <div class="education-details">
+                    <div class="graduation-info">
+                        <strong>Graduation:</strong> May 2025 | <strong>Focus Area:</strong> Information Context
+                    </div>
+                    <div class="gpa-focus">
+                        GPA: 3.4
+                    </div>
+                </div>
+            </div>
+            
+            <div class="graduation-image">
+                <img src="grad.jpg" alt="Graduation Photo" class="grad-photo">
+            </div>
+        </div>
+        
+        <div class="coursework-section">
+            <h4 class="coursework-title">Relevant Coursework</h4>
+            <div class="coursework-grid">
+                <div class="course-tag">Introduction to Application Development</div>
+                <div class="course-tag">Networking & Telecommunications</div>
+                <div class="course-tag">Information, People & Technology</div>
+                <div class="course-tag">Organization of Data</div>
+                <div class="course-tag">Language, Logic, & Discrete Mathematics</div>
+                <div class="course-tag">Introduction to Computer Languages</div>
+                <div class="course-tag">IT Project Management</div>
+                <div class="course-tag">Information & Organizations</div>
+                <div class="course-tag">The Information Environment</div>
+                <div class="course-tag">Foundations of Human-Centered Design</div>
+                <div class="course-tag">Emerging Issues & Technologies</div>
+                <div class="course-tag">World Technologies and Learning</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="section" id="certifications">
+        <h2>Certifications</h2>
+        <div class="certifications-grid">
+            <div class="cert-card">
+                <h4 style="color: #B87F39; margin-bottom: 10px; min-height: 2.4em; display: flex; align-items: center; justify-content: center;">INFOSEC Security Technologies and Tools</h4>
+                <p style="color: #666;">2022</p>
+                <div class="cert-image" onclick="openCertModal('cert1')">
+                    <img src="infosec_security_tools.jpg" alt="INFOSEC Security Technologies Certificate">
+                </div>
+            </div>
+            
+            <div class="cert-card">
+                <h4 style="color: #B87F39; margin-bottom: 10px; min-height: 2.4em; display: flex; align-items: center; justify-content: center;">INFOSEC Log Analysis</h4>
+                <p style="color: #666;">2022</p>
+                <div class="cert-image" onclick="openCertModal('cert2')">
+                    <img src="infosec_log_analysis.jpg" alt="INFOSEC Log Analysis Certificate">
+                </div>
+            </div>
+            
+            <div class="cert-card">
+                <h4 style="color: #B87F39; margin-bottom: 10px; min-height: 2.4em; display: flex; align-items: center; justify-content: center;">INFOSEC Advanced IP Networking</h4>
+                <p style="color: #666;">2022</p>
+                <div class="cert-image" onclick="openCertModal('cert3')">
+                    <img src="infosec_advanced_ip.jpg" alt="INFOSEC Advanced IP Networking Certificate">
+                </div>
+            </div>
+            
+            <div class="cert-card">
+                <h4 style="color: #B87F39; margin-bottom: 10px; min-height: 2.4em; display: flex; align-items: center; justify-content: center;">INFOSEC Penetration Testing Cyber Range</h4>
+                <p style="color: #666;">2025</p>
+                <div class="cert-image" onclick="openCertModal('cert4')">
+                    <img src="infosec_penetration_testing.jpg" alt="INFOSEC Penetration Testing Certificate">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project PDF Modal -->
+    <div id="projectPdfModal" class="project-pdf-modal" onclick="closeProjectModal()">
+        <span class="project-pdf-close">&times;</span>
+        <div class="project-pdf-content" onclick="event.stopPropagation()">
+            <embed id="projectPdfEmbed" src="" type="application/pdf">
+        </div>
+    </div>
+
+    <!-- Certificate Modal -->
+    <div id="certModal" class="cert-modal" onclick="closeCertModal()">
+        <span class="cert-close">&times;</span>
+        <img class="cert-modal-content" id="modalImage" alt="Certificate">
+    </div>
+
+    <!-- Achievements Section -->
+    <section class="section" id="achievements">
+        <h2>Achievements</h2>
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px; align-items: start;">
+            <div class="achievements-list">
+                <div class="achievement-item">
+                    <span style="font-weight: bold; color: #B87F39;">Outstanding Leadership Award (2022)</span>
+                </div>
+                <div class="achievement-item">
+                    <span style="font-weight: bold; color: #B87F39;">Alpha Alpha Alpha Honor Society Member (2025)</span>
+                </div>
+                <div class="achievement-item">
+                    <span style="font-weight: bold; color: #B87F39;">Dean's List Recognition (2024,2025)</span>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <div style="position: relative;">
+                    <img src="honors.jpeg" alt="Honors and Awards" style="width: 280px; height: 350px; border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); object-fit: cover;">
+                    
+                    <!-- Yuyu sticker sitting on top of the photo -->
+                    <div class="yuyu" style="position: absolute; top: -85px; right: 10px; z-index: 3;">
+                        <img src="yuyu4.png" alt="Yuyu Character Rolling Eyes" style="width: 90px; height: 90px;">
+                        <div class="speech-bubble" style="top: -60px; right: 10px; left: auto;">
+                            Oh yes, the classic "chin-first" angle.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact-section" id="contact">
+        <!-- Yuyu5 sticker for contact display -->
+        <div class="yuyu contact-yuyu" style="position: absolute; top: -12px; right: 30px; z-index: 5;">
+            <img src="yuyu5.png" alt="Yuyu Helper" style="width: 80px; height: 80px;">
+            <div class="contact-display-bubble" id="contactBubble">
+                <div class="contact-info" id="contactInfo"></div>
+                <div class="contact-comment" id="contactComment"></div>
+            </div>
+        </div>
+        
+        <h2 style="color: white; -webkit-text-fill-color: white;">Let's Create Something Amazing</h2>
+        <p style="font-size: 1.3rem; margin-bottom: 30px; opacity: 0.9;">
+            Ready to bring your ideas to life? I'd love to collaborate with you!
+        </p>
+        
+        <div class="contact-links">
+            <a href="#" class="contact-link" onclick="showContactInfo('email', event)">Email Me</a>
+            <a href="https://linkedin.com/in/itsmaysalama" class="contact-link">LinkedIn</a>
+            <a href="#" class="contact-link" onclick="showContactInfo('phone', event)">Call Me</a>
+        </div>
+        
+        <p style="margin-top: 40px; opacity: 0.8;">
+            Based in Philadelphia, PA • Available for freelance & full-time opportunities
+        </p>
+    </section>
+
+    <!-- Floating Yuyu for guidance -->
+    <div class="yuyu yuyu-floating" id="yuyuHelper">
+        <img src="yuyu3.png" alt="Yuyu Helper" style="width: 80px; height: 80px;">
+        <div class="speech-bubble" style="top: -60px; left: -120px;">
+            Click me for quick navigation! 🧭
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div class="nav-menu" id="navMenu">
+        <h3>Quick Navigation</h3>
+        <div class="nav-buttons">
+            <a href="#about" class="nav-button">About Me</a>
+            <a href="#design-business" class="nav-button">Design Services</a>
+            <a href="#skills" class="nav-button">Skills</a>
+            <a href="#experience" class="nav-button">Experience</a>
+            <a href="#projects" class="nav-button">Projects</a>
+            <a href="#leadership" class="nav-button">Leadership</a>
+            <a href="#education" class="nav-button">Education</a>
+            <a href="#certifications" class="nav-button">Certifications</a>
+            <a href="#achievements" class="nav-button">Achievements</a>
+            <a href="#contact" class="nav-button">Contact</a>
+        </div>
+    </div>
+
+    <script>
+        // Contact display functionality - Global scope
+        function showContactInfo(type, event) {
+            console.log('showContactInfo called with type:', type); // Debug log
+            event.preventDefault();
+            
+            const bubble = document.getElementById('contactBubble');
+            const info = document.getElementById('contactInfo');
+            const comment = document.getElementById('contactComment');
+            
+            console.log('Elements found:', bubble, info, comment); // Debug log
+            
+            if (!bubble || !info || !comment) {
+                console.error('Could not find required elements');
+                return;
+            }
+            
+            if (type === 'email') {
+                info.textContent = 'itsmaysalama@gmail.com';
+                comment.textContent = 'Wow, you want my email? Very professional of you!';
+            } else if (type === 'phone') {
+                info.textContent = '+1 (610) 406-3929';
+                comment.textContent = 'My digits? Bold move. I like your confidence!';
+            }
+            
+            console.log('About to show bubble'); // Debug log
+            // Show the bubble
+            bubble.classList.add('show');
+            
+            // Hide after 5 seconds (enough time to copy)
+            setTimeout(() => {
+                bubble.classList.remove('show');
+            }, 5000);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const yuyuHelper = document.getElementById('yuyuHelper');
+            const navMenu = document.getElementById('navMenu');
+            let menuOpen = false;
+
+            // Show/hide floating Yuyu based on scroll position
+            function checkScrollPosition() {
+                const heroSection = document.querySelector('.hero');
+                const heroHeight = heroSection.offsetHeight;
+                const scrollY = window.scrollY;
+                
+                if (scrollY > heroHeight * 0.8) {
+                    yuyuHelper.classList.add('visible');
+                } else {
+                    yuyuHelper.classList.remove('visible');
+                    // Also close menu if it's open when hiding
+                    if (menuOpen) {
+                        navMenu.classList.remove('active');
+                        yuyuHelper.classList.remove('menu-active');
+                        menuOpen = false;
+                    }
+                }
+            }
+
+            // Listen for scroll events
+            window.addEventListener('scroll', checkScrollPosition);
+
+            // Check initial scroll position
+            checkScrollPosition();
+
+            // Yuyu helper click to toggle navigation menu
+            yuyuHelper.addEventListener('click', function() {
+                menuOpen = !menuOpen;
+                if (menuOpen) {
+                    navMenu.classList.add('active');
+                    yuyuHelper.classList.add('menu-active');
+                } else {
+                    navMenu.classList.remove('active');
+                    yuyuHelper.classList.remove('menu-active');
+                }
+            });
+
+            // Project PDF modal functions
+            window.openProjectModal = function(filename) {
+                try {
+                    const modal = document.getElementById('projectPdfModal');
+                    const embed = document.getElementById('projectPdfEmbed');
+                    
+                    if (!modal || !embed) {
+                        console.error('Project modal elements not found');
+                        return;
+                    }
+                    
+                    // Handle different file types
+                    if (filename.endsWith('.jpg') || filename.endsWith('.png')) {
+                        // For images, create an img element instead of embed
+                        embed.style.display = 'none';
+                        let existingImg = modal.querySelector('.modal-image');
+                        if (!existingImg) {
+                            existingImg = document.createElement('img');
+                            existingImg.className = 'modal-image';
+                            existingImg.style.cssText = 'width: 100%; height: 100%; object-fit: contain; border-radius: 10px;';
+                            existingImg.onclick = function(e) { e.stopPropagation(); }; // Prevent closing when clicking image
+                            modal.querySelector('.project-pdf-content').appendChild(existingImg);
+                        }
+                        existingImg.src = filename;
+                        existingImg.style.display = 'block';
+                        modal.style.display = 'block';
+                        return;
+                    }
+                    
+                    // Hide any existing image
+                    const existingImg = modal.querySelector('.modal-image');
+                    if (existingImg) {
+                        existingImg.style.display = 'none';
+                    }
+                    
+                    embed.style.display = 'block';
+                    modal.style.display = 'block';
+                    embed.src = filename;
+                } catch (error) {
+                    console.error('Error opening project modal:', error);
+                }
+            };
+
+            window.closeProjectModal = function() {
+                try {
+                    const modal = document.getElementById('projectPdfModal');
+                    const embed = document.getElementById('projectPdfEmbed');
+                    const existingImg = modal.querySelector('.modal-image');
+                    
+                    if (modal) {
+                        modal.style.display = 'none';
+                    }
+                    if (embed) {
+                        embed.src = '';
+                    }
+                    if (existingImg) {
+                        existingImg.src = '';
+                    }
+                } catch (error) {
+                    console.error('Error closing project modal:', error);
+                }
+            };
+
+            // Certificate modal functions
+            window.openCertModal = function(certId) {
+                try {
+                    const modal = document.getElementById('certModal');
+                    const modalImg = document.getElementById('modalImage');
+                    
+                    if (!modal || !modalImg) {
+                        console.error('Modal elements not found');
+                        return;
+                    }
+                    
+                    // Map cert IDs to image files
+                    const certImages = {
+                        'cert1': 'infosec_security_tools.jpg',
+                        'cert2': 'infosec_log_analysis.jpg', 
+                        'cert3': 'infosec_advanced_ip.jpg',
+                        'cert4': 'infosec_penetration_testing.jpg'
+                    };
+                    
+                    modal.style.display = 'block';
+                    modalImg.src = certImages[certId] || '';
+                    modalImg.alt = `Certificate ${certId}`;
+                } catch (error) {
+                    console.error('Error opening modal:', error);
+                }
+            };
+
+            window.closeCertModal = function() {
+                try {
+                    const modal = document.getElementById('certModal');
+                    if (modal) {
+                        modal.style.display = 'none';
+                    }
+                } catch (error) {
+                    console.error('Error closing modal:', error);
+                }
+            };
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeCertModal();
+                    closeProjectModal();
+                }
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!yuyuHelper.contains(e.target) && !navMenu.contains(e.target) && menuOpen) {
+                    navMenu.classList.remove('active');
+                    yuyuHelper.classList.remove('menu-active');
+                    menuOpen = false;
+                }
+            });
+
+            // Smooth scrolling for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        // Close menu after navigation
+                        if (menuOpen) {
+                            navMenu.classList.remove('active');
+                            yuyuHelper.classList.remove('menu-active');
+                            menuOpen = false;
+                        }
+                    }
+                });
+            });
+
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.project-card, .skill-card, .experience-item, .leadership-card, .cert-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = this.classList.contains('project-card') ? 'scale(1.02)' : 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = this.classList.contains('project-card') ? 'scale(1)' : 'translateY(0)';
+                });
+            });
+
+            // Yuyu interactions (other yuyus)
+            const yuyuElements = document.querySelectorAll('.yuyu:not(#yuyuHelper)');
+            yuyuElements.forEach((yuyu, index) => {
+                yuyu.addEventListener('click', function() {
+                    this.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 200);
+                });
+            });
+
+            // Scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections for animations
+            document.querySelectorAll('.section, .project-card, .skill-card, .experience-item, .leadership-card, .cert-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease-out';
+                observer.observe(el);
+            });
+
+            // Add special hover effect for achievement items
+            const achievementItems = document.querySelectorAll('.achievement-item');
+            achievementItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = '#f8f9fa';
+                    this.style.transform = 'translateX(10px)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = 'transparent';
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
