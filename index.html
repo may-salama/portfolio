@@ -273,12 +273,63 @@
             background-clip: text;
         }
 
+        /* About Section Layout */
         .about-section {
             background: rgba(255,255,255,0.95);
             border-radius: 20px;
             margin: 50px auto;
             padding: 60px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+    
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text {
+            /* Text content goes here */
+        }
+
+        .about-image-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-left: 40px;
+            min-height: 350px;
+        }
+
+        .profile-image {
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-image img {
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            object-fit: cover;
+        }
+
+        .about-yuyu {
+            position: absolute;
+            left: -27px;
+            bottom: 50px;
+            z-index: 2;
+        }
+
+        .about-yuyu img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .about-yuyu .speech-bubble {
+            top: -50px;
+            left: 20px;
         }
 
         .education-section {
@@ -474,7 +525,7 @@
         }
 
         .bullet-points li::before {
-            content: '●';
+            content: '◉';
             color: #B87F39;
             position: absolute;
             left: 0;
@@ -715,27 +766,17 @@
             color: #B87F39;
         }
 
-        .about-section .speech-bubble {
-            position: absolute !important;
-            z-index: 10 !important;
-            background: white;
-            color: #333;
-            padding: 10px 15px;
-            border-radius: 15px;
-            font-size: 14px;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            opacity: 0;
-            transform: scale(0.5);
-            transition: all 0.3s ease;
-            min-width: 200px;
-            white-space: nowrap;
-        }
-
-        .about-section .yuyu:hover .speech-bubble {
-            opacity: 1 !important;
-            transform: scale(1) !important;
-            z-index: 10 !important;
+        @media (max-width: 768px) {
+            .about-section .about-image-container .about-yuyu {
+                left: 46px !important;
+                bottom: 35px !important;
+                position: absolute !important;
+            }
+            
+            .about-section .about-image-container .about-yuyu img {
+                width: 80px !important;
+                height: 80px !important;
+            }
         }
 
         /* Graphic Design Business Section Styles */
@@ -910,7 +951,34 @@
         }
 
         .contact-yuyu {
-            cursor: default;
+            cursor: pointer;
+        }
+
+        .contact-hover-bubble {
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .contact-hover-bubble::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            border: 10px solid transparent;
+            border-bottom-color: white;
+            display: none;
+        }
+
+        .contact-yuyu:hover .contact-hover-bubble {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .contact-yuyu.showing-contact .contact-hover-bubble {
+            opacity: 0 !important;
+            transform: scale(0.5) !important;
         }
 
         .contact-display-bubble {
@@ -1170,20 +1238,67 @@
             .experience-header { flex-direction: column; }
             .duration { text-align: left; margin-top: 10px; }
             
-            .about-section > div:first-child {
+            /* FIXED ABOUT SECTION MOBILE LAYOUT */
+            .about-content {
                 grid-template-columns: 1fr !important;
-                gap: 30px !important;
-                text-align: center;
+                gap: 40px !important;
             }
-            
-            .about-section .yuyu {
-                left: -20px !important;
-                bottom: 10px !important;
+
+            .about-text {
+                order: 1; /* Text comes first */
+                text-align: left;
             }
-            
-            .about-section .yuyu img {
+
+            .about-image-container {
+                order: 2; /* Image comes second */
+                padding-left: 0 !important;
+                justify-content: center;
+                min-height: auto;
+                margin-top: 20px;
+            }
+
+            .profile-image img {
+                width: 250px !important;
+                height: 250px !important;
+            }
+
+            .about-section .about-yuyu {
+                left: 30px !important;
+                bottom: 20px !important;
+            }
+
+            .about-section .about-yuyu img {
                 width: 80px !important;
                 height: 80px !important;
+            }
+
+            .about-section .about-yuyu .speech-bubble {
+                font-size: 12px !important;
+                padding: 8px 12px !important;
+                min-width: 150px !important;
+                top: -45px !important;
+                left: 15px !important;
+                white-space: normal !important;
+            }
+
+            /* FIXED EDUCATION SECTION MOBILE LAYOUT */
+            .education-content {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+            }
+
+            .education-info {
+                order: 1; /* Text comes first */
+            }
+
+            .graduation-image {
+                order: 2; /* Image comes second */
+                margin-top: 20px;
+            }
+
+            .grad-photo {
+                width: 200px !important;
+                height: 250px !important;
             }
 
             /* Business section mobile styles */
@@ -1207,35 +1322,104 @@
             
             /* Skills section Yuyu mobile styles */
             .skills-presenter {
-                top: -40px !important;
-                left: 10px !important;
+                position: relative !important;
+                top: auto !important;
+                left: auto !important;
+                margin-bottom: -35px !important;
+                display: flex !important;
+                justify-content: center !important;
             }
-            
+
             .skills-presenter img {
                 width: 70px !important;
                 height: 70px !important;
             }
-            
+
             .skills-presenter .speech-bubble {
-                font-size: 14px !important;
-                padding: 10px 15px !important;
+                font-size: 12px !important;
+                padding: 8px 12px !important;
                 max-width: 160px !important;
-                top: -70px !important;
-                left: 20px !important;
+                top: -60px !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                white-space: normal !important;
+            }
+
+            /* Projects hint Yuyu mobile styles */
+            .projects-hint-yuyu {
+                position: relative !important;
+                top: auto !important;
+                left: auto !important;
+                margin-bottom: -50px !important;
+                display: flex !important;
+                justify-content: center !important;
+                z-index: 1 !important;
+            }
+
+            .projects-hint-yuyu img {
+                width: 70px !important;
+                height: 70px !important;
+            }
+
+            .projects-hint-yuyu .speech-bubble {
+                font-size: 12px !important;
+                padding: 8px 12px !important;
+                max-width: 180px !important;
+                top: -50px !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
                 white-space: normal !important;
             }
 
             /* Achievements mobile layout */
-            #achievements > div:first-child {
-                grid-template-columns: 1fr !important;
+            #achievements > div[style*="display: grid"] {
+                display: flex !important;
+                flex-direction: column !important;
                 gap: 30px !important;
-                text-align: center;
+                grid-template-columns: none !important;
+            }
+
+            #achievements .achievements-list {
+                order: 1 !important;
+                width: 100% !important;
             }
             
-            #achievements .image-placeholder {
+            #achievements > div[style*="display: grid"] > div:last-child {
+                order: 2 !important;
+                width: 100% !important;
+                display: flex !important;
+                justify-content: center !important;
+                position: relative !important;
+            }
+            
+            #achievements img {
                 width: 250px !important;
                 height: 300px !important;
-                margin: 0 auto;
+            }
+
+            /* Yuyu4 mobile positioning for achievements */
+            #achievements .yuyu {
+                position: absolute !important;
+                top: -65px !important;
+                right: 20px !important;
+                left: auto !important;
+                transform: none !important;
+            }
+
+            #achievements .yuyu img {
+                width: 70px !important;
+                height: 70px !important;
+            }
+
+            #achievements .yuyu .speech-bubble {
+                font-size: 12px !important;
+                padding: 8px 12px !important;
+                max-width: 160px !important;
+                top: -50px !important;
+                left: auto !important;
+                right: 0px !important;
+                transform: none !important;
+                white-space: normal !important;
             }
         }
     </style>
@@ -1276,8 +1460,8 @@
     <!-- About Section -->
     <section class="section about-section" id="about">
         <h2>About Me</h2>
-        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px; align-items: center;">
-            <div>
+        <div class="about-content">
+            <div class="about-text">
                 <p style="font-size: 1.2rem; line-height: 1.8; color: #555; margin-bottom: 25px;">
                     Hi! I'm an Information Sciences & Technology graduate who thrives at the intersection of design and technology. With 6+ years of design experience and hands-on expertise in full-stack development, UX research, and project management, I've led cross-functional teams and delivered 25+ freelance projects with a 100% client satisfaction rate. What excites me most is turning complex problems into human-centered solutions — whether that's redesigning digital experiences for 40,000+ users at Penn State, building a game that caught corporate sponsors' attention, or running a design business that grew year-over-year.
                 </p>
@@ -1285,16 +1469,15 @@
                     I believe the best technology doesn't just work — it feels intuitive, inclusive, and even fun. That's the mindset I bring to every project. 
                 </p>
             </div>
-            <div style="position: relative; display: flex; justify-content: center; align-items: center; padding-left: 40px; min-height: 350px;">
-                <!-- Main profile image -->
-                <div style="position: relative; z-index: 1;">
-                    <img src="profile.jpg" alt="May Salama Profile" style="width: 300px; height: 300px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); object-fit: cover;">
+            
+            <div class="about-image-container">
+                <div class="profile-image">
+                    <img src="profile.jpg" alt="May Salama Profile">
                 </div>
                 
-                <!-- Yuyu sticker peeking out from the left side -->
-                <div class="yuyu" style="position: absolute; left: -27px; bottom: 50px; z-index: 2;">
-                    <img src="yuyu2.png" alt="Yuyu Character" style="width: 100px; height: 100px;">
-                    <div class="speech-bubble" style="top: -50px; left: 20px;">
+                <div class="yuyu about-yuyu">
+                    <img src="yuyu2.png" alt="Yuyu Character">
+                    <div class="speech-bubble">
                         She's pretty amazing, right? 😎
                     </div>
                 </div>
@@ -1445,7 +1628,15 @@
     <!-- Key Academic Projects Section -->
     <section class="section" id="projects">
         <h2>Key Academic Projects</h2>
-        <div class="projects-grid">
+        <div class="projects-grid" style="position: relative;">
+            <!-- Yuyu7 peeking out above parking system project -->
+            <div class="yuyu projects-hint-yuyu" style="position: absolute; top: -70px; left: 50px; z-index: -1;">
+                <img src="yuyu7.png" alt="Yuyu Peeking" style="width: 80px; height: 80px;">
+                <div class="speech-bubble" style="top: -50px; left: -20px; white-space: nowrap; z-index: 10;">
+                    Psst... you can click on these!
+                </div>
+            </div>
+            
             <div class="project-card">
                 <div class="project-image" onclick="window.open('https://www.figma.com/proto/5fHglwVTN52TZDMj856sue/Penn-State-Parking-System-Redesign?t=peqzKsSZiZWDAm6Q-1', '_blank')">
                     <img src="parking.png" alt="Penn State Parking System Redesign">
@@ -1731,6 +1922,9 @@
         <!-- Yuyu5 sticker for contact display -->
         <div class="yuyu contact-yuyu" style="position: absolute; top: -12px; right: 30px; z-index: 5;">
             <img src="yuyu5.png" alt="Yuyu Helper" style="width: 80px; height: 80px;">
+            <div class="speech-bubble contact-hover-bubble" style="top: 90px; right: 10px; left: auto;">
+                Wow, you made it all the way down here!
+            </div>
             <div class="contact-display-bubble" id="contactBubble">
                 <div class="contact-info" id="contactInfo"></div>
                 <div class="contact-comment" id="contactComment"></div>
@@ -1787,6 +1981,7 @@
             const bubble = document.getElementById('contactBubble');
             const info = document.getElementById('contactInfo');
             const comment = document.getElementById('contactComment');
+            const contactYuyu = document.querySelector('.contact-yuyu');
             
             console.log('Elements found:', bubble, info, comment); // Debug log
             
@@ -1795,12 +1990,15 @@
                 return;
             }
             
+            // Add class to hide hover bubble when showing contact info
+            contactYuyu.classList.add('showing-contact');
+            
             if (type === 'email') {
                 info.textContent = 'itsmaysalama@gmail.com';
-                comment.textContent = 'Wow, you want my email? Very professional of you!';
+                comment.textContent = 'Wow, you want her email? Very professional of you!';
             } else if (type === 'phone') {
                 info.textContent = '+1 (610) 406-3929';
-                comment.textContent = 'My digits? Bold move. I like your confidence!';
+                comment.textContent = 'Her digits? Bold move. I like your confidence!';
             }
             
             console.log('About to show bubble'); // Debug log
@@ -1810,6 +2008,10 @@
             // Hide after 5 seconds (enough time to copy)
             setTimeout(() => {
                 bubble.classList.remove('show');
+                // Remove the class to allow hover bubble to work again
+                setTimeout(() => {
+                    contactYuyu.classList.remove('showing-contact');
+                }, 300); // Small delay to avoid flash
             }, 5000);
         }
 
