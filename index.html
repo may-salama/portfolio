@@ -317,8 +317,9 @@
 
         .about-yuyu {
             position: absolute;
-            left: -27px;
-            bottom: 50px;
+            left: 56%;
+            top: -69.5px;
+            transform: translateX(-50%);
             z-index: 2;
         }
 
@@ -329,7 +330,13 @@
 
         .about-yuyu .speech-bubble {
             top: -50px;
-            left: 20px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.5);
+        }
+
+        .about-yuyu:hover .speech-bubble {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
         }
 
         .education-section {
@@ -768,9 +775,11 @@
 
         @media (max-width: 768px) {
             .about-section .about-image-container .about-yuyu {
-                left: 46px !important;
-                bottom: 35px !important;
+                left: 50% !important;
+                bottom: auto !important;
+                top: -74px !important;
                 position: absolute !important;
+                transform: translateX(-50%) !important;
             }
             
             .about-section .about-image-container .about-yuyu img {
@@ -1262,11 +1271,6 @@
                 height: 250px !important;
             }
 
-            .about-section .about-yuyu {
-                left: 30px !important;
-                bottom: 20px !important;
-            }
-
             .about-section .about-yuyu img {
                 width: 80px !important;
                 height: 80px !important;
@@ -1277,7 +1281,6 @@
                 padding: 8px 12px !important;
                 min-width: 150px !important;
                 top: -45px !important;
-                left: 15px !important;
                 white-space: normal !important;
             }
 
@@ -1353,7 +1356,7 @@
                 margin-bottom: -50px !important;
                 display: flex !important;
                 justify-content: center !important;
-                z-index: 1 !important;
+                z-index: -1 !important;
             }
 
             .projects-hint-yuyu img {
@@ -1478,7 +1481,7 @@
                 <div class="yuyu about-yuyu">
                     <img src="yuyu2.png" alt="Yuyu Character">
                     <div class="speech-bubble">
-                        She's pretty amazing, right? 😎
+                        Plotting world domination... I mean, career success...
                     </div>
                 </div>
             </div>
